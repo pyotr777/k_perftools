@@ -10,6 +10,62 @@
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <script src="javascripts/jquery-2.2.4.min.js"></script>
+    <script>
+    function text2HTML() {
+        text_raw = $(this).html();
+        array = text_raw.split("\n");
+        text = "";
+        for (i = 0; i < array.length; i++) {
+            if (array[i].length > 0) text += "<p>" + array[i] + "</p>\n";
+            else text += "<p>&nbsp;</p>\n"
+        }
+        $(this).html(text);
+    }
+        
+    $(document).ready(function() {
+        var hide1selected = 0;
+        var hide2selected = 0;
+        var readme1=1;           
+        $("#readme").hide();        
+        readme1=0;
+        
+        $("#hide1").click(function() {
+            if (readme1==1) {
+                $("#readme").hide(100);
+                readme1=0;
+                $(this).removeClass("selected");
+            } else {                
+                $("#readme").load("./TAUonK/opt/README",text2HTML);              
+                $("#readme").show(100);
+                $(this).addClass("selected");
+                hide1selected = 1;
+                readme1=1;
+            }            
+            if (hide2selected == 1) {
+                $("#hide2").removeClass("selected");
+                hide2selected = 0;
+            }
+        });
+        $("#hide2").click(function() {
+            if (readme1==2) {
+                $("#readme").hide(100);
+                readme1=0;
+                $(this).removeClass("selected");
+            } else {
+                $("#readme").load("./TAUonK/opt/README25.1", text2HTML);
+                $("#readme").show(100);
+                $(this).addClass("selected");
+                hide2selected = 1;
+                readme1=2;
+            }
+            if (hide1selected == 1) {
+                $("#hide1").removeClass("selected");
+                hide1selected = 0;
+            }
+        });
+      });
+      </script>
     <title>Eclipse PTP and TAU for K and FX10 computers by pyotr777</title>
   </head>
 
@@ -56,9 +112,13 @@
         </p>
         
         <h4>TAU</h4>
-        <p>For TAU on the "K" computer usage instructions see readme file. On login nodes: <code>/opt/aics/TAU/README</code> and <code>/opt/aics/TAU/README25.1</code>.
+        <p>For TAU on the "K" computer usage instructions see readme file. On login nodes: <code id="hide1">/opt/aics/TAU/README</code> and <code id="hide2">/opt/aics/TAU/README25.1</code>.
         </p>
-        <div class="blank"></div>
+            
+        <div class="hidden" id="readme"></div>
+            
+        <div class="blank"></div>        
+            
         <h1>Past Events</h1>
         <date>2016/02/24-26</date>
         <event><h4>VI-HPS workshop in AICS</h4>
