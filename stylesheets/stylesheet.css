@@ -276,19 +276,26 @@ date {
     display:block;
     height: 30px;
     font-size: 18px;
-    width: 135px;
+    width: 125px;
     float: left;
     color: #1d1d1d;
 }
 
 event {
     margin-bottom: 8px;
-  font-size: 18px;
-  font-weight: bold;
-  color: #000000;
+    font-size: 18px;
+    font-weight: normal;
     display:block;
-    height: 30px;
-    float: none;
+    float:none;
+    padding-left:125px;
+}
+
+event h4 {
+    color:black;
+    font-size: 100%;
+    font-weight: normal;
+    padding: 0;
+    margin: 0;
 }
 
 h4 {
@@ -313,6 +320,14 @@ h1, h2 {
 
 h1, h2, h3 {
     margin-bottom: 15px;  
+}
+
+h1 span.note {
+    font-size: 9pt;
+    position:relative;
+    left: 10px;
+    color:#c3c3c3;
+    letter-spacing: 0.4pt;
 }
 
 h2 ul {
